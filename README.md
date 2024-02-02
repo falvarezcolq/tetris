@@ -10,3 +10,5 @@ npm install
 npm run dev
 
 ```
+
+## Puedes jugar
