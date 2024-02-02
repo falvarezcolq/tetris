@@ -1,3 +1,12 @@
 # tetris
+##  Tener nodejs igual o mayor a la version 16 
 
-clona e instala luego a jugar
+## instalar
+
+```
+git clone https://github.com/falvarezcolq/tetris.git
+cd tegris
+npm install
+npm run dev
+
+```
