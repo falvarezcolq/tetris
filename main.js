@@ -1,4 +1,7 @@
 import './style.css'
+
+
+
 const  WIDTH  = 20
 const AXIS_Y = 30
 const AXIS_X = 16
@@ -10,6 +13,12 @@ let divScore = document.getElementById("score")
 canvas.width = AXIS_X* WIDTH
 canvas.height = AXIS_Y * WIDTH
 let context = canvas.getContext("2d")
+
+let imgBlock1 = new Image()
+imgBlock1.src = './image/block1.png'
+
+let imgBlock2 = new Image()
+imgBlock2.src = './image/block2.png'
 
 context.fillStyle ="black"
 context.fillRect(0,0,AXIS_X*WIDTH, AXIS_Y * WIDTH)
@@ -105,8 +114,9 @@ function draw(){
   area.forEach((row,y)=>{
     row.forEach((value,x)=>{
       if(value === 1){
-        context.fillStyle = "yellow"
-        context.fillRect(x,y,1,1)
+        // context.fillStyle = "yellow"
+        // context.fillRect(x,y,1,1)
+        context.drawImage(imgBlock1, 0, 0, 100, 100, x, y, 1, 1)
       }
     })
   })
@@ -114,8 +124,10 @@ function draw(){
   piece.shape.forEach((row,y)=>{
     row.forEach((value,x)=>{
       if(value === 1){
-        context.fillStyle = "red"
-        context.fillRect((x+piece.x),(y+piece.y),1,1)
+        // context.fillStyle = "red"
+        // context.fillRect((x+piece.x),(y+piece.y),1,1)
+
+        context.drawImage(imgBlock2, 0, 0, 100, 100,(x+piece.x),(y+piece.y), 1, 1)
       }
     })
   })

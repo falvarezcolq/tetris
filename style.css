@@ -7,3 +7,7 @@ body {
   background-color:#333;
   place-content: center;
 }
+
+#score{
+  color: aliceblue;
+}
