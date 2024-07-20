@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${libs.jaxws21.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-ServicioTransaccional" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional"/>
+        <property name="wsdl-ServicioTransaccional" location="xml-resources/web-service-references/ServicioTransaccional/wsdl/biometrico-pruebas.subsidio.gob.bo_6664/Services/ServicioTransaccional.svc.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional" destdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional" wsdl="${wsdl-ServicioTransaccional}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://biometrico-pruebas.subsidio.gob.bo:6664/Services/ServicioTransaccional.svc?wsdl" xnocompile="true" xendorsed="true" package="services">
+            <depends file="${wsdl-ServicioTransaccional}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ServicioTransaccional" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/services"/>
+    </target>
+    <target name="wsimport-client-ServicioTransaccional_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_1"/>
+        <property name="wsdl-ServicioTransaccional_1" location="xml-resources/web-service-references/ServicioTransaccional_1/wsdl/biometrico-pruebas.subsidio.gob.bo_6664/Services/ServicioTransaccional.svc.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_1" destdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_1" wsdl="${wsdl-ServicioTransaccional_1}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://biometrico-pruebas.subsidio.gob.bo:6664/Services/ServicioTransaccional.svc?wsdl" xnocompile="true" xendorsed="true" package="ServicioTransaccional">
+            <depends file="${wsdl-ServicioTransaccional_1}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_1"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_1">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ServicioTransaccional_1" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_1"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ServicioTransaccional"/>
+    </target>
+    <target name="wsimport-client-ServicioTransaccional_2" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_2"/>
+        <property name="wsdl-ServicioTransaccional_2" location="xml-resources/web-service-references/ServicioTransaccional_2/wsdl/biometrico-pruebas.subsidio.gob.bo_6664/Services/ServicioTransaccional.svc.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_2" destdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_2" wsdl="${wsdl-ServicioTransaccional_2}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://biometrico-pruebas.subsidio.gob.bo:6664/Services/ServicioTransaccional.svc?wsdl" xnocompile="true" xendorsed="true" package="ServicioSeguridad">
+            <depends file="${wsdl-ServicioTransaccional_2}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_2"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_2">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ServicioTransaccional_2" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_2"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ServicioSeguridad"/>
+    </target>
+    <target name="wsimport-client-ServicioSeguridad" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ServicioSeguridad"/>
+        <property name="wsdl-ServicioSeguridad" location="xml-resources/web-service-references/ServicioSeguridad/wsdl/biometrico-pruebas.subsidio.gob.bo_6664/Services/ServicioSeguridad.svc.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ServicioSeguridad" destdir="${build.generated.dir}/jax-wsCache/ServicioSeguridad" wsdl="${wsdl-ServicioSeguridad}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://biometrico-pruebas.subsidio.gob.bo:6664/Services/ServicioSeguridad.svc?wsdl" xnocompile="true" xendorsed="true" package="ServicioSeguridad">
+            <depends file="${wsdl-ServicioSeguridad}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ServicioSeguridad"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ServicioSeguridad">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ServicioSeguridad" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ServicioSeguridad"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ServicioSeguridad"/>
+    </target>
+    <target name="wsimport-client-ServicioTransaccional_3" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_3"/>
+        <property name="wsdl-ServicioTransaccional_3" location="xml-resources/web-service-references/ServicioTransaccional_3/wsdl/biometrico-pruebas.subsidio.gob.bo_6664/Services/ServicioTransaccional.svc.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_3" destdir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_3" wsdl="${wsdl-ServicioTransaccional_3}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://biometrico-pruebas.subsidio.gob.bo:6664/Services/ServicioTransaccional.svc?wsdl" xnocompile="true" xendorsed="true" package="ServicioTransaccional">
+            <depends file="${wsdl-ServicioTransaccional_3}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_3"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_3">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ServicioTransaccional_3" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ServicioTransaccional_3"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ServicioTransaccional"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-ServicioTransaccional, wsimport-client-ServicioTransaccional_1, wsimport-client-ServicioTransaccional_2, wsimport-client-ServicioSeguridad, wsimport-client-ServicioTransaccional_3"/>
+</project>

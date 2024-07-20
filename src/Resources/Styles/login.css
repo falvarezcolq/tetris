@@ -1,0 +1,26 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.login_pane{
+    -fx-background-color:#353A56;
+    /*-fx-border-color:#2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius:0px;
+    -fx-background-radius:0px;
+    -fx-border-style:solid;
+}
+
+.login_sedem_pane{
+    -fx-background-color:#653A56;
+    /*-fx-border-color:#2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius:0px;
+    -fx-background-radius:0px;
+    -fx-border-style:solid;
+}
+

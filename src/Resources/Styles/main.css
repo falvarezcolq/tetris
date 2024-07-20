@@ -1,0 +1,49 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.side_pane{
+    -fx-background-color:#353A56;
+    /*-fx-border-color:#2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius:10px;
+    -fx-background-radius:10px;
+    -fx-border-style:solid;
+}
+
+.inner_pane{
+    -fx-background-color:#EEEEEE;
+    /*-fx-border-color:#2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius:10px;
+    -fx-background-radius:10px;
+    -fx-border-style:solid;
+}
+
+.most_inner_pane{
+    -fx-background-color:#348CF1;
+    /*-fx-border-color:#2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius:10px;
+    -fx-background-radius:10px;
+/*    -fx-border-style:solid;*/
+}
+
+
+.side_button{
+    -fx-background-color:#353A56;
+    /*-fx-border-color:#2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius:10px;
+    -fx-background-radius:10px;
+    /*-fx-border-style:solid;*/
+}
+
+.side_button:hover{
+     -fx-background-color:#643A56;
+}
+

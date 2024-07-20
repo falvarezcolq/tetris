@@ -1,0 +1,261 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package le;
+
+import com.digitalpersona.uareu.Engine;
+import com.digitalpersona.uareu.Fid;
+import com.digitalpersona.uareu.Fmd;
+import com.digitalpersona.uareu.Reader;
+import com.digitalpersona.uareu.UareUException;
+import com.digitalpersona.uareu.UareUGlobal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Base64;
+import javax.swing.JDialog;
+
+
+/**
+ *
+ * @author admin@emapa.lan
+ */
+public class Verification extends javax.swing.JPanel implements ActionListener {
+
+    /**
+     * Creates new form Verification
+     */
+    
+    private static final long serialVersionUID = 6;
+	
+
+	private CaptureThread m_capture;
+	private Reader  m_reader;
+	private Fmd[]   m_fmds;
+	private JDialog m_dlgParent;
+//	private JTextArea m_text;
+        
+        private final String m_strPrompt1 = "Verificacion iniciada \n    ponga su huella en el lector\n\n";
+	private final String m_strPrompt2 = "    ponga la misma huella u otra en el lector\n\n";
+
+    
+    public Verification(Reader reader) {
+        initComponents();
+        
+        m_reader = reader;
+        m_fmds = new Fmd[2];
+        
+        
+    }
+    
+    public void actionPerformed(ActionEvent e){
+//		if(e.getActionCommand().equals(ACT_BACK)){
+//			//cancel capture
+//			StopCaptureThread();
+//		}
+//		else 
+                    
+            if(e.getActionCommand().equals(CaptureThread.ACT_CAPTURE)){
+                //process result
+                CaptureThread.CaptureEvent evt = (CaptureThread.CaptureEvent)e;
+                if(ProcessCaptureResult(evt)){
+                        //restart capture thread
+                        WaitForCaptureThread();
+                        StartCaptureThread();
+                }
+                else{
+                        //destroy dialog
+                        m_dlgParent.setVisible(false);
+                }
+            }
+	}
+    
+    private boolean ProcessCaptureResult(CaptureThread.CaptureEvent evt){
+		boolean bCanceled = false;
+
+		if(null != evt.capture_result){
+			if(null != evt.capture_result.image && Reader.CaptureQuality.GOOD == evt.capture_result.quality){
+				//extract features
+				Engine engine = UareUGlobal.GetEngine();
+					
+				try{
+                                    Fmd fmd = engine.CreateFmd(evt.capture_result.image, Fmd.Format.ANSI_378_2004);
+                                    byte[] data = fmd.getData();
+                                    byte[] encoded = Base64.getEncoder().encode(data);
+//                                    println(new String(encoded));   // Outputs "SGVsbG8="
+                                    String base64 = new String(encoded);
+                                    txtArea.append(base64+".\n");
+                                    if(null == m_fmds[0]) m_fmds[0] = fmd;
+                                    else if(null == m_fmds[1]) m_fmds[1] = fmd;
+				}
+				catch(UareUException e){ MessageBox.DpError("Engine.CreateFmd()", e); }
+					
+				if(null != m_fmds[0] &&  null != m_fmds[1]){
+					//perform comparison
+					try{
+						int falsematch_rate = engine.Compare(m_fmds[0], 0, m_fmds[1], 0);
+							
+						int target_falsematch_rate = Engine.PROBABILITY_ONE / 100000; //target rate is 0.00001
+						if(falsematch_rate < target_falsematch_rate){
+							txtArea.append("Fingerprints matched.\n");
+							String str = String.format("dissimilarity score: 0x%x.\n", falsematch_rate);
+							txtArea.append(str);
+							str = String.format("false match rate: %e.\n\n\n", (double)(falsematch_rate / Engine.PROBABILITY_ONE));
+							txtArea.append(str);
+						}
+						else{
+							txtArea.append("Fingerprints did not match.\n\n\n");
+						}
+					}
+					catch(UareUException e){ MessageBox.DpError("Engine.CreateFmd()", e); }
+						
+					//discard FMDs
+					m_fmds[0] = null;
+					m_fmds[1] = null;
+
+					//the new loop starts
+					txtArea.append(m_strPrompt1);
+				}
+				else{
+					//the loop continues
+					txtArea.append(m_strPrompt2);
+				}
+			}
+			else if(Reader.CaptureQuality.CANCELED == evt.capture_result.quality){
+				//capture or streaming was canceled, just quit
+				bCanceled = true;
+			}
+			else{
+				//bad quality
+				MessageBox.BadQuality(evt.capture_result.quality);
+			}
+		}
+		else if(null != evt.exception){
+			//exception during capture
+			MessageBox.DpError("Capture", evt.exception);
+			bCanceled = true;
+		}
+		else if(null != evt.reader_status){
+			//reader failure
+			MessageBox.BadStatus(evt.reader_status);
+			bCanceled = true;
+		}
+
+		return !bCanceled;
+	}
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        btnRegresar = new javax.swing.JButton();
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        btnRegresar.setText("<< Regresar");
+        btnRegresar.setToolTipText("");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnRegresar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegresar)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        StopCaptureThread();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void StartCaptureThread(){
+            m_capture = new CaptureThread(m_reader, false, Fid.Format.ANSI_381_2004, Reader.ImageProcessing.IMG_PROC_DEFAULT);
+            m_capture.start(this);
+    }
+
+    private void StopCaptureThread(){
+            if(null != m_capture) m_capture.cancel();
+    }
+
+    private void WaitForCaptureThread(){
+            if(null != m_capture) m_capture.join(1000);
+    }
+    
+    private void doModal(JDialog dlgParent){
+		//open reader
+		try{
+			m_reader.Open(Reader.Priority.COOPERATIVE);
+		}
+		catch(UareUException e){ MessageBox.DpError("Reader.Open()", e); }
+		
+		//start capture thread
+		StartCaptureThread();
+
+		//put initial prompt on the screen
+		txtArea.append(m_strPrompt1);
+		
+		//bring up modal dialog
+		m_dlgParent = dlgParent;
+		m_dlgParent.setContentPane(this);
+		m_dlgParent.pack();
+		m_dlgParent.setLocationRelativeTo(null);
+		m_dlgParent.toFront();
+		m_dlgParent.setVisible(true);
+		m_dlgParent.dispose();
+		
+		//cancel capture
+		StopCaptureThread();
+		
+		//wait for capture thread to finish
+		WaitForCaptureThread();
+		
+		//close reader
+		try{
+			m_reader.Close();
+		}
+		catch(UareUException e){ MessageBox.DpError("Reader.Close()", e); }
+	}
+    
+    
+    public static void Run(Reader reader){
+    	JDialog dlg = new JDialog((JDialog)null, "Verification", true);
+    	Verification verification = new Verification(reader);
+    	verification.doModal(dlg);
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtArea;
+    // End of variables declaration//GEN-END:variables
+}
